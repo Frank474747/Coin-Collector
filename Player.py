@@ -2,13 +2,13 @@ import pygame
 from fallingObject import FallingObject
 from setup import *
 
-__piggy_img = pygame.image.load("images/piggy.png").convert()
-__piggy_img.set_colorkey(WHITE)
-__piggy_img = pygame.transform.scale(__piggy_img, PIGGY_SIZE)
+_piggy_img = pygame.image.load("images/piggy.png").convert()
+_piggy_img.set_colorkey(WHITE)
+_piggy_img = pygame.transform.scale(_piggy_img, PIGGY_SIZE)
 
 
 class Player:
-    def __init__(self, image: pygame.Surface=__piggy_img, speed: int=10):
+    def __init__(self, image: pygame.Surface=_piggy_img, speed: int=10):
         self.__image = image
         self.__rect = self.__image.get_rect()
         self.__rect.x = SCREEN_WIDTH // 2 - self.__rect.width // 2  # at middle
