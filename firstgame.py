@@ -1,7 +1,6 @@
 import pygame
 import random
 import sys
-from colors import *
 from setup import *
 
 # Initialize Pygame
