@@ -9,7 +9,7 @@ pygame.init()
 
 # Initialize screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Piggy Bank Coin Collector")
+pygame.display.set_caption("Coin Collector")
 
 # Load images
 piggy_image = pygame.image.load("images/piggy.png").convert()
@@ -21,8 +21,8 @@ coin_image.set_colorkey(WHITE)  # Make white background transparent
 background_image = pygame.image.load("images/background.jpg").convert()
 
 # Resize images
-piggy_image = pygame.transform.scale(piggy_image, (80, 80))
-coin_image = pygame.transform.scale(coin_image, (40, 40))
+piggy_image = pygame.transform.scale(piggy_image, PIGGY_SIZE)
+coin_image = pygame.transform.scale(coin_image, COIN_SIZE)
 background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Piggy class
