@@ -5,6 +5,6 @@ __pycache__/
 *.pyd
 
 # Ignore test files
-test.py
+test*.py
 
 *.txt
