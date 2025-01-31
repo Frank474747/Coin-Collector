@@ -1,9 +1,9 @@
 import pygame
 from setup import *
 
-# Button class with rounded edges
+
 class Button:
-    def __init__(self, x, y, width, height, color, text, radius=20):
+    def __init__(self, x, y, width, height, color, text, radius=25):
         self.rect = pygame.Rect(x, y, width, height)
         self.color = color
         self.text = text
@@ -21,7 +21,3 @@ class Button:
 
     def is_hovered(self, pos):
         return self.rect.collidepoint(pos)
-
-    def click(self):
-        print(f"Button '{self.text}' clicked!")
-

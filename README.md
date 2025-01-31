@@ -1,3 +1,2 @@
- ## Coin Collector
+ # Coin Collector
 
- 

@@ -2,7 +2,7 @@ import game
 
 def main():
     g = game.Game()
-    g.main_play()
+    g.run()
 
 if __name__ == "__main__":
     main()

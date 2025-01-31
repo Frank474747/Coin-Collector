@@ -11,7 +11,7 @@ class Player:
     def __init__(self, image: pygame.Surface=_piggy_img, speed: int=10):
         self.__image = image
         self.__rect = self.__image.get_rect()
-        self.__rect.x = SCREEN_WIDTH // 2 - self.__rect.width // 2  # at middle
+        self.__rect.x = SCREEN_WIDTH // 2 - self.__rect.width // 2  # at center
         self.__rect.y = SCREEN_HEIGHT - self.__rect.height - 5  # at bottom
         self.__speed = speed
 
@@ -20,6 +20,9 @@ class Player:
             self.__rect.x -= self.__speed
         elif keys[pygame.K_RIGHT] and self.__rect.x < SCREEN_WIDTH - self.__rect.width:
             self.__rect.x += self.__speed
+
+    def to_center(self):
+        self.__rect.x = SCREEN_WIDTH // 2 - self.__rect.width // 2  # at center
 
     def draw(self, screen: pygame.Surface):
         screen.blit(self.__image, self.__rect)

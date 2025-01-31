@@ -7,6 +7,7 @@ pygame.init()
 _screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 import player, fallingObject as fo
+import button
 
 _background_img = pygame.image.load("images/background.jpg").convert()
 _background_img = pygame.transform.scale(_background_img, (SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -15,6 +16,13 @@ _background_img = pygame.transform.scale(_background_img, (SCREEN_WIDTH, SCREEN_
 class Game:
     clock = pygame.time.Clock()
     font = pygame.font.Font(None, 36)
+    title_font = pygame.font.Font(pygame.font.match_font("impact"), 72)
+    restart_button = button.Button(RESTART_POSI[0], RESTART_POSI[1], 
+                                   RESTART_SIZE[0], RESTART_SIZE[1],
+                                   GOLD, "Play Again", 25)
+    start_button = button.Button(START_POSI[0], START_POSI[1],
+                                 START_SIZE[0], START_SIZE[1],
+                                 GOLD, "START GAME", 25)
 
     def __init__(self):
         self.screen = _screen
@@ -23,6 +31,10 @@ class Game:
 
         self.__player = player.Player()
         self.__falling_objs: list[fo.FallingObject] = []
+
+    def __clear_screen(self):
+        self.__player.to_center()
+        self.__falling_objs.clear()
         
     def __add_falling(self):
         rand = random.randint(1, 500)
@@ -32,10 +44,30 @@ class Game:
             self.__falling_objs.append(fo.banknote())
         elif rand % 75 == 1:
             self.__falling_objs.append(fo.firecracker())
-        elif rand % 25 == 1:
+        elif rand % 20 == 1:
             self.__falling_objs.append(fo.coin())
 
-    def main_play(self):
+    def __start_page(self):
+        self.screen.blit(self.__background, (0, 0))
+        tilte_text = Game.title_font.render("Coin Collector", True, BLACK)
+        self.screen.blit(tilte_text, TITLE_POSI)
+        Game.start_button.draw(self.screen)
+        pygame.display.flip()
+
+        # wait for user's command
+        while True:
+            event = pygame.event.wait()
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if Game.start_button.is_hovered(event.pos):
+                    return
+
+
+    def __main_play(self):
+        self.__clear_screen()
         money = 0
         start_ticks = pygame.time.get_ticks()
 
@@ -93,13 +125,22 @@ class Game:
         # show final results
         self.screen.blit(_background_img, (0, 0))
         result_text = Game.font.render(f"Time's up! You earn {money} dollars!", True, BLACK)
-
         self.screen.blit(result_text, RESULT_POSI)
+        Game.restart_button.draw(self.screen)
         pygame.display.flip()
 
         # wait for user's command
         while True:
-            for e in pygame.event.get():
-                if e.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+            event = pygame.event.wait()
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if Game.restart_button.is_hovered(event.pos):
+                    return
+                
+    def run(self):
+        self.__start_page()
+        while(True):
+            self.__main_play()

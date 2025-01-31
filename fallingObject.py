@@ -62,5 +62,5 @@ class LuckyBag(FallingObject):
             falling.append(coin())
         for i in range(20):
             falling.append(banknote())
-        for i in range(10):
+        for i in range(8):
             falling.append(firecracker())
