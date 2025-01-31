@@ -42,4 +42,3 @@ GAME_DURATION = 30  # sec
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GOLD = (255, 215, 0)
-CRIMSON = (220, 20, 60)
