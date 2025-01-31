@@ -8,7 +8,7 @@ _piggy_img = pygame.transform.scale(_piggy_img, PIGGY_SIZE)
 
 
 class Player:
-    def __init__(self, image: pygame.Surface=_piggy_img, speed: int=10):
+    def __init__(self, image: pygame.Surface=_piggy_img, speed: int=PIGGY_SPEED):
         self.__image = image
         self.__rect = self.__image.get_rect()
         self.__rect.x = SCREEN_WIDTH // 2 - self.__rect.width // 2  # at center
